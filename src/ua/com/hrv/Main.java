@@ -1,12 +1,14 @@
 package ua.com.hrv;
 
+import javax.print.attribute.IntegerSyntax;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws WrongInputConsoleParametersException {
 
         Months[] ms = Months.values();
         Season[] sea = Season.values();
@@ -15,231 +17,238 @@ public class Main {
         while (true) {
             menu();
 
-            switch (sc.next()) {
 
-                case "1": {
-                    System.out.println("Напишіть місяць");
-                    sc = new Scanner(System.in);
-                    String month = sc.next().toUpperCase();
-                    boolean flag = false;
-                    for (Months months : ms) {
-                        if (months.name().equals(month)) {
-                            System.out.println("Місяць " + month + " знайдено");
-                            flag = true;
-                        }
-                    }
-                    if (!flag) {
-                        System.out.println("Місяць не знайдено");
-                    }
-                    break;
-                }
+            switch (sc.nextInt()) {
 
-                case "2": {
-                    System.out.println("Напишіть пору року");
-                    sc = new Scanner(System.in);
-                    String season = sc.next().toUpperCase();
+                    case 1: {
+                        System.out.println("Напишіть місяць");
+                        sc = new Scanner(System.in);
+                        String month = sc.next().toUpperCase();
+                        String mes = "Введіть дані";
 
-                    boolean flag = false;
-
-                    for (Months months : ms) {
-                        if (months.getSeason().name().equalsIgnoreCase(season)) {
-                            flag = true;
-
-                        }
-                    }
-
-                    if (flag) {
-                        Season seas = Season.valueOf(season);
+                        boolean flag = false;
                         for (Months months : ms) {
-                            if (months.season.name().equals(season)) {
-                                System.out.println(months);
+                            if (months.name().equals(month)) {
+                                System.out.println("Місяць " + month + " знайдено");
+                                flag = true;
+                                throw new WrongInputConsoleParametersException(mes);
+                            }else {
+                                System.out.println("OK");
                             }
                         }
-                    }
-                    if (!flag) {
-                        System.out.println("Пори року не знайдено");
-                    }
-                    break;
-                }
-
-                case "3": {
-                    System.out.println("Напишіть місяць");
-                    sc = new Scanner(System.in);
-                    String day = sc.next().toUpperCase();
-                    boolean flag = false;
-                    for (Months months : ms) {
-                        if (months.name().equalsIgnoreCase(day)) {
-                            flag = true;
+                        if (!flag) {
+                            String er = "Місяць не знайдено";
                         }
+                        break;
+
                     }
-                    if (flag) {
-                        Months months3 = Months.valueOf(day);
-                        int dayOf = months3.getDays();
+
+                    case 2: {
+                        System.out.println("Напишіть пору року");
+                        sc = new Scanner(System.in);
+                        String season = sc.next().toUpperCase();
+
+                        boolean flag = false;
+
                         for (Months months : ms) {
-                            if (months.days == dayOf) {
-                                System.out.println(months);
+                            if (months.getSeason().name().equalsIgnoreCase(season)) {
+                                flag = true;
+
                             }
                         }
-                    }
-                    if (!flag) {
-                        System.out.println("Місяців не знайдено");
-                    }
-                    break;
-                }
-                case "4": {
-                    System.out.println("Напишіть місяць");
-                    sc = new Scanner(System.in);
-                    String day = sc.next().toUpperCase();
-                    boolean flag = false;
-                    for (Months months : ms) {
-                        if (months.name().equals(day)) {
-                            flag = true;
-                        }
-                    }
-                    if (flag) {
-                        Months months4 = Months.valueOf(day);
-                        int dayOf = months4.getDays();
-                        for (Months months : ms) {
-                            if (months.days < dayOf) {
-                                System.out.println(months);
+
+                        if (flag) {
+                            Season seas = Season.valueOf(season);
+                            for (Months months : ms) {
+                                if (months.season.name().equals(season)) {
+                                    System.out.println(months);
+                                }
                             }
                         }
-                    }
-                    if (!flag) {
-                        System.out.println("Місяців не знайдено");
-                    }
-                    break;
-                }
-
-                case "5": {
-                    System.out.println("Напишіть місяць");
-                    sc = new Scanner(System.in);
-                    String day = sc.next().toUpperCase();
-                    boolean flag = false;
-                    for (Months months : ms) {
-                        if (months.name().equals(day)) {
-                            flag = true;
+                        if (!flag) {
+                            System.out.println("Пори року не знайдено");
                         }
+                        break;
                     }
-                    if (flag) {
-                        Months months4 = Months.valueOf(day);
-                        int dayOf = months4.getDays();
+
+                    case 3: {
+                        System.out.println("Напишіть місяць");
+                        sc = new Scanner(System.in);
+                        String day = sc.next().toUpperCase();
+                        boolean flag = false;
                         for (Months months : ms) {
-                            if (months.days > dayOf) {
-                                System.out.println(months);
+                            if (months.name().equalsIgnoreCase(day)) {
+                                flag = true;
                             }
                         }
+                        if (flag) {
+                            Months months3 = Months.valueOf(day);
+                            int dayOf = months3.getDays();
+                            for (Months months : ms) {
+                                if (months.days == dayOf) {
+                                    System.out.println(months);
+                                }
+                            }
+                        }
+                        if (!flag) {
+                            System.out.println("Місяців не знайдено");
+                        }
+                        break;
                     }
-                    if (!flag) {
-                        System.out.println("Місяців не знайдено");
+                    case 4: {
+                        System.out.println("Напишіть місяць");
+                        sc = new Scanner(System.in);
+                        String day = sc.next().toUpperCase();
+                        boolean flag = false;
+                        for (Months months : ms) {
+                            if (months.name().equals(day)) {
+                                flag = true;
+                            }
+                        }
+                        if (flag) {
+                            Months months4 = Months.valueOf(day);
+                            int dayOf = months4.getDays();
+                            for (Months months : ms) {
+                                if (months.days < dayOf) {
+                                    System.out.println(months);
+                                }
+                            }
+                        }
+                        if (!flag) {
+                            System.out.println("Місяців не знайдено");
+                        }
+                        break;
                     }
-                    break;
-                }
 
-                case "6": {
-                    System.out.println("Напишіть пору року");
-                    sc = new Scanner(System.in);
-                    String season = sc.next().toUpperCase();
+                    case 5: {
+                        System.out.println("Напишіть місяць");
+                        sc = new Scanner(System.in);
+                        String day = sc.next().toUpperCase();
+                        boolean flag = false;
+                        for (Months months : ms) {
+                            if (months.name().equals(day)) {
+                                flag = true;
+                            }
+                        }
+                        if (flag) {
+                            Months months4 = Months.valueOf(day);
+                            int dayOf = months4.getDays();
+                            for (Months months : ms) {
+                                if (months.days > dayOf) {
+                                    System.out.println(months);
+                                }
+                            }
+                        }
+                        if (!flag) {
+                            System.out.println("Місяців не знайдено");
+                        }
+                        break;
+                    }
 
-                    boolean flag = false;
+                    case 6: {
+                        System.out.println("Напишіть пору року");
+                        sc = new Scanner(System.in);
+                        String season = sc.next().toUpperCase();
+
+                        boolean flag = false;
 
 //                    for (Months months : ms) {
 //                        if (months.getSeason().name().equalsIgnoreCase(season)){
 //                            flag = true;
 //                        }
 //                    }
-                    for (Season season1 : sea) {
-                        if (season1.name().equalsIgnoreCase(season)) {
-                            flag = true;
-                        }
-                    }
-
-                    if (flag) {
-                        Season seaso = Season.valueOf(season);
-                        int ord = seaso.ordinal();
-
-                        if (ord == (sea.length - 1)) {
-                            ord = 0;
-                            System.out.println(sea[ord]);
-                        } else {
-                            System.out.println(sea[ord + 1]);
-                        }
-                    }
-                    if (!flag) {
-                        System.out.println("Пору року не знайдено");
-                    }
-                    break;
-                }
-
-                case "7": {
-                    System.out.println("Напишіть пору року");
-                    sc = new Scanner(System.in);
-                    String season = sc.next().toUpperCase();
-
-                    boolean flag = false;
-
-                    for (Season season1 : sea) {
-                        if (season1.name().equalsIgnoreCase(season)) {
-                            flag = true;
-                        }
-                    }
-
-                    if (flag) {
-                        Season seaso = Season.valueOf(season);
-                        int ord = seaso.ordinal();
-                        if (ord == (sea.length - 1)) {
-                            ord = 0;
-                            System.out.println(sea[ord]);
-                        } else {
-                            System.out.println(sea[ord - 1]);
-                        }
-                    }
-                    if (!flag) {
-                        System.out.println("Пору року не знайдено");
-                    }
-                    break;
-                }
-
-                case "8": {
-                    for (Months months : ms) {
-                        if (months.days % 2 == 0) {
-                            System.out.println(months);
-                        }
-                    }
-                }
-
-                case "9": {
-                    for (Months months : ms) {
-                        if (months.days % 2 == 1) {
-                            System.out.println(months);
-                        }
-                    }
-                }
-                case "10": {
-                    System.out.println("Напишіть місяць");
-                    sc = new Scanner(System.in);
-                    String month = sc.next().toUpperCase();
-                    boolean flag = false;
-                    for (Months months : ms) {
-                        if (months.name().equals(month)) {
-                            if (months.days % 2 == 0) {
-                                System.out.println("Місяць " + month + " знайдено");
-                                System.out.println("Парний");
-                            } else {
-                                System.out.println("Не парний");
+                        for (Season season1 : sea) {
+                            if (season1.name().equalsIgnoreCase(season)) {
+                                flag = true;
                             }
-                            flag = true;
+                        }
+
+                        if (flag) {
+                            Season seaso = Season.valueOf(season);
+                            int ord = seaso.ordinal();
+
+                            if (ord == (sea.length - 1)) {
+                                ord = 0;
+                                System.out.println(sea[ord]);
+                            } else {
+                                System.out.println(sea[ord + 1]);
+                            }
+                        }
+                        if (!flag) {
+                            System.out.println("Пору року не знайдено");
+                        }
+                        break;
+                    }
+
+                    case 7: {
+                        System.out.println("Напишіть пору року");
+                        sc = new Scanner(System.in);
+                        String season = sc.next().toUpperCase();
+
+                        boolean flag = false;
+
+                        for (Season season1 : sea) {
+                            if (season1.name().equalsIgnoreCase(season)) {
+                                flag = true;
+                            }
+                        }
+
+                        if (flag) {
+                            Season seaso = Season.valueOf(season);
+                            int ord = seaso.ordinal();
+                            if (ord == (sea.length - 1)) {
+                                ord = 0;
+                                System.out.println(sea[ord]);
+                            } else {
+                                System.out.println(sea[ord - 1]);
+                            }
+                        }
+                        if (!flag) {
+                            System.out.println("Пору року не знайдено");
+                        }
+                        break;
+                    }
+
+                    case 8: {
+                        for (Months months : ms) {
+                            if (months.days % 2 == 0) {
+                                System.out.println(months);
+                            }
                         }
                     }
-                    if (!flag) {
-                        System.out.println("Місяць не знайдено");
+
+                    case 9: {
+                        for (Months months : ms) {
+                            if (months.days % 2 == 1) {
+                                System.out.println(months);
+                            }
+                        }
                     }
-                    break;
+                    case 10: {
+                        System.out.println("Напишіть місяць");
+                        sc = new Scanner(System.in);
+                        String month = sc.next().toUpperCase();
+                        boolean flag = false;
+                        for (Months months : ms) {
+                            if (months.name().equals(month)) {
+                                if (months.days % 2 == 0) {
+                                    System.out.println("Місяць " + month + " знайдено");
+                                    System.out.println("Парний");
+                                } else {
+                                    System.out.println("Не парний");
+                                }
+                                flag = true;
+                            }
+                        }
+                        if (!flag) {
+                            System.out.println("Місяць не знайдено");
+                        }
+                        break;
+                    }
+
                 }
 
             }
-
-        }
 
     }
 
