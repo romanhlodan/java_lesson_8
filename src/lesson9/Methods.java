@@ -6,7 +6,13 @@ public class Methods {
 
     public Methods() {
     }
-
+    /**
+     * @param a,b
+     * @exception MyException
+     * @return null
+     * @author Roman
+     *
+     * */
     public void add(int a, int b) throws MyException {
         if (a<0 && b<0){
             System.err.println("IllegalArgumentException");
@@ -22,7 +28,13 @@ public class Methods {
             System.out.println(a+b);
         }
     }
-
+    /**
+     * @param a,b
+     * @exception MyException
+     * @return null
+     * @author Roman
+     *
+     * */
     public void minus(int a, int b) throws MyException {
         if (a<0 && b<0){
             System.err.println("IllegalArgumentException");
@@ -38,7 +50,13 @@ public class Methods {
             System.out.println(a-b);
         }
     }
-
+    /**
+     * @param a,b
+     * @exception MyException
+     * @return null
+     * @author Roman
+     *
+     * */
     public void multip(int a, int b) throws MyException {
         if (a<0 && b<0){
             System.err.println("IllegalArgumentException");
@@ -54,7 +72,13 @@ public class Methods {
             System.out.println(a*b);
         }
     }
-
+    /**
+     * @param a,b
+     * @exception MyException
+     * @return null
+     * @author Roman
+     *
+     * */
     public void divis(int a, int b) throws MyException {
         if (a<0 && b<0){
             System.err.println("IllegalArgumentException");

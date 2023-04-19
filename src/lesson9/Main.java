@@ -7,5 +7,6 @@ public class Main {
         methods.minus(0, 8);
         methods.multip(5, -5);
         methods.divis(1, 0);
+
     }
 }
